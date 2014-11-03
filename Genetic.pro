@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        interface.cpp
+        interface.cpp \
+    mindistance.cpp
 
-HEADERS  += interface.h
+HEADERS  += interface.h \
+    mindistance.h
 
 FORMS    += interface.ui

@@ -1,24 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Interface</class>
- <widget class="QMainWindow" name="Interface" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="Interface">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>720</width>
+    <height>330</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Interface</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="Layout">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="6" column="1" colspan="7">
+     <widget class="QLineEdit" name="text_answer"/>
+    </item>
+    <item row="4" column="0" colspan="8">
+     <widget class="QPlainTextEdit" name="output"/>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Generations:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="8">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="button_start">
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_stop">
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Stop</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_reset">
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="4">
+     <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Elitism Rate:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLineEdit" name="text_mutation">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="text_pop">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLineEdit" name="text_elitism">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Mutation Rate:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="text_generation">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Answer:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Population:</string>
+      </property>
+      <property name="buddy">
+       <cstring>text_pop</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="8">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>433</width>
+        <height>17</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0" colspan="8">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Algorithm:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_algorithm"/>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
