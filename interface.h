@@ -18,6 +18,9 @@ public:
     explicit Interface(QWidget *parent = 0);
     ~Interface();
 
+private slots:
+    void on_button_start_clicked();
+
 private:
     Ui::Interface *ui;
     minDistance *mind;

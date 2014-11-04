@@ -13,13 +13,23 @@
   <property name="windowTitle">
    <string>Interface</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(245, 245, 245);</string>
+  </property>
   <widget class="QWidget" name="Layout">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="6" column="1" colspan="7">
-     <widget class="QLineEdit" name="text_answer"/>
+    <item row="1" column="6">
+     <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Mutation Rate:</string>
+      </property>
+     </widget>
     </item>
-    <item row="4" column="0" colspan="8">
-     <widget class="QPlainTextEdit" name="output"/>
+    <item row="5" column="1" colspan="7">
+     <widget class="QLineEdit" name="text_answer"/>
     </item>
     <item row="1" column="2">
      <widget class="QLabel" name="label_2">
@@ -31,22 +41,35 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="text_generation">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="0" colspan="8">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="button_start">
         <property name="styleSheet">
-         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;
+border-color: rgb(0, 0, 0);
+background-color: rgb(137, 118, 118);</string>
         </property>
         <property name="text">
          <string>Start</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="button_stop">
         <property name="styleSheet">
-         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;
+background-color: rgb(137, 118, 118);</string>
         </property>
         <property name="text">
          <string>Stop</string>
@@ -56,7 +79,8 @@
       <item>
        <widget class="QPushButton" name="button_reset">
         <property name="styleSheet">
-         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;
+background-color: rgb(137, 118, 118);</string>
         </property>
         <property name="text">
          <string>Reset</string>
@@ -109,24 +133,7 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="6">
-     <widget class="QLabel" name="label_4">
-      <property name="styleSheet">
-       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Mutation Rate:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLineEdit" name="text_generation">
-      <property name="styleSheet">
-       <string notr="true">border-color: rgb(35, 16, 223);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="label_6">
       <property name="styleSheet">
        <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
@@ -192,10 +199,32 @@
       </item>
      </layout>
     </item>
+    <item row="4" column="0" colspan="8">
+     <widget class="QCustomPlot" name="graphInterface" native="true"/>
+    </item>
    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header location="global">qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>text_pop</tabstop>
+  <tabstop>text_generation</tabstop>
+  <tabstop>text_elitism</tabstop>
+  <tabstop>text_mutation</tabstop>
+  <tabstop>button_start</tabstop>
+  <tabstop>button_reset</tabstop>
+  <tabstop>button_stop</tabstop>
+  <tabstop>box_algorithm</tabstop>
+  <tabstop>text_answer</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

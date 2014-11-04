@@ -8,9 +8,9 @@ class Interface;
 class minDistance
 {
 public:
-    minDistance(Interface *u);
+    minDistance();
     ~minDistance();
-    minDistance(int pop, int gen, int mut, int elit);
+    minDistance(Interface *u, int pop, int gen, float mut, float elit);
     struct choro
     {
         int x;
@@ -21,7 +21,7 @@ public:
     void Fitness(choro &chrom);
     bool isFinished();
     void Selection();
-    void GenerateOffspring();
+    void CrossOver();
     void Mutate();
     void rePlace();
 
@@ -29,8 +29,10 @@ private:
     Interface *ui;
     int population_number;
     int generation;
-    int mutation;
-    int elitism;
+    float mutation;
+    float elitism;
+    QVector<double> *latitude = new QVector<double>();
+    QVector<double> *longitude = new QVector<double>();
 };
 
 
