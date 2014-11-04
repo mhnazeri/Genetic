@@ -15,10 +15,12 @@ CONFIG += c++11
 SOURCES += main.cpp\
         interface.cpp \
     mindistance.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    random_generator.cpp
 
 HEADERS  += interface.h \
     mindistance.h \
-    qcustomplot.h
+    qcustomplot.h \
+    random_generator.h
 
 FORMS    += interface.ui

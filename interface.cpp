@@ -13,17 +13,17 @@ Interface::Interface(QWidget *parent) :
 {
     ui->setupUi(this);
 //    setCentralWidget(ui->Layout);
-//    this->setWindowState(this->windowState() ^ Qt::WindowFullScreen);
-    ui->graphInterface->addGraph();
-    ui->graphInterface->addGraph();
-    ui->graphInterface->xAxis->setAutoTickStep(false);
-    ui->graphInterface->yAxis->setAutoTickStep(false);
-    ui->graphInterface->xAxis->setTickStep(0.5);
-    ui->graphInterface->yAxis->setTickStep(0.5);
-    ui->graphInterface->xAxis->setLabel("Latitude");
-    ui->graphInterface->yAxis->setLabel("Longitude");
-    ui->graphInterface->xAxis->setRange(29, 31);
-    ui->graphInterface->yAxis->setRange(55, 59);
+    this->setWindowState(this->windowState() ^ Qt::WindowMaximized);
+//    ui->graphInterface->addGraph();
+//    ui->graphInterface->addGraph();
+//    ui->graphInterface->xAxis->setAutoTickStep(false);
+//    ui->graphInterface->yAxis->setAutoTickStep(false);
+//    ui->graphInterface->xAxis->setTickStep(0.5);
+//    ui->graphInterface->yAxis->setTickStep(0.5);
+//    ui->graphInterface->xAxis->setLabel("Latitude");
+//    ui->graphInterface->yAxis->setLabel("Longitude");
+//    ui->graphInterface->xAxis->setRange(29, 31);
+//    ui->graphInterface->yAxis->setRange(55, 59);
 }
 
 Interface::~Interface()
