@@ -36,6 +36,7 @@ void Interface::on_button_start_clicked()
 {
     mind = new minDistance(this,std::stoi(ui->text_pop->text().toStdString()),
                            std::stoi(ui->text_generation->text().toStdString()),
-                           std::stoi(ui->text_mutation->text().toStdString()),
-                           std::stoi(ui->text_elitism->text().toStdString()));
+                           std::stof(ui->text_mutation->text().toStdString()),
+                           std::stof(ui->text_elitism->text().toStdString()),
+                           std::stof(ui->text_crossRate->text().toStdString()));
 }

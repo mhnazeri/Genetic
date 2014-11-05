@@ -18,6 +18,70 @@
   </property>
   <widget class="QWidget" name="Layout">
    <layout class="QGridLayout" name="gridLayout_2">
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Best Chromosome:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="8">
+     <widget class="QLabel" name="label_7">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>CrossOver Rate:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Population:</string>
+      </property>
+      <property name="buddy">
+       <cstring>text_pop</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Elitism Rate:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLineEdit" name="text_mutation">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="text_pop">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLineEdit" name="text_elitism">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="6">
      <widget class="QLabel" name="label_4">
       <property name="styleSheet">
@@ -27,9 +91,6 @@
        <string>Mutation Rate:</string>
       </property>
      </widget>
-    </item>
-    <item row="5" column="1" colspan="7">
-     <widget class="QLineEdit" name="text_answer"/>
     </item>
     <item row="1" column="2">
      <widget class="QLabel" name="label_2">
@@ -48,7 +109,53 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0" colspan="8">
+    <item row="1" column="9">
+     <widget class="QLineEdit" name="text_crossRate"/>
+    </item>
+    <item row="0" column="0" colspan="10">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>433</width>
+        <height>17</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0" colspan="10">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Algorithm:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_algorithm"/>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0" colspan="10">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="button_start">
@@ -102,105 +209,11 @@ background-color: rgb(137, 118, 118);</string>
       </item>
      </layout>
     </item>
-    <item row="1" column="4">
-     <widget class="QLabel" name="label_3">
-      <property name="styleSheet">
-       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Elitism Rate:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="7">
-     <widget class="QLineEdit" name="text_mutation">
-      <property name="styleSheet">
-       <string notr="true">border-color: rgb(35, 16, 223);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="text_pop">
-      <property name="styleSheet">
-       <string notr="true">border-color: rgb(35, 16, 223);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="5">
-     <widget class="QLineEdit" name="text_elitism">
-      <property name="styleSheet">
-       <string notr="true">border-color: rgb(35, 16, 223);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_6">
-      <property name="styleSheet">
-       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Answer:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label">
-      <property name="styleSheet">
-       <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Population:</string>
-      </property>
-      <property name="buddy">
-       <cstring>text_pop</cstring>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="8">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>433</width>
-        <height>17</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="0" colspan="8">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="styleSheet">
-         <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
-        </property>
-        <property name="text">
-         <string>Algorithm:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_algorithm"/>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="4" column="0" colspan="8">
+    <item row="4" column="0" colspan="10">
      <widget class="QCustomPlot" name="graphInterface" native="true"/>
+    </item>
+    <item row="5" column="1" colspan="9">
+     <widget class="QLineEdit" name="text_answer"/>
     </item>
    </layout>
   </widget>

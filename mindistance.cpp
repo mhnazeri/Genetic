@@ -17,8 +17,8 @@ minDistance::~minDistance()
     delete longitude;
 }
 
-minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit) :
-    ui(u), POPULATION_NUMBER(pop), GENERATION_NUMBER(gen), MUTAION_RATE(mut), ELITISM_RATE(elit)
+minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit, float cross) :
+    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTAION_RATE(mut), ELITISM_RATE(elit), CROSSOVER_RATE(cross)
 {
     std::ifstream file("../Genetic/position.txt");
     string temp="";
@@ -51,29 +51,29 @@ minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit) 
 
 void minDistance::InitialPopulation()
 {
-    for(int i = 0; i < POPULATION_NUMBER; i++)
+    for(int i = 0; i < POPULATION_SIZE; i++)
     {
-        choro citizen;
+        chro citizen;
         citizen.x = prandom.RandomDouble(55, 59);
         citizen.y = prandom.RandomDouble(28, 31);
-        citizen.fit = 0.0;
+        citizen.fit = 1000.0;
         population.push_back(citizen);
     }
-    middle.resize(POPULATION_NUMBER);
+    middle.resize(POPULATION_SIZE);
 }
 
-void minDistance::Fitness(std::vector<choro> &population)
+void minDistance::Fitness()
 {
     double fitness = 0.0;
-    choro citizen;
-    for(int i = 0; i < POPULATION_NUMBER; i++)
+    chro *citizen = new chro;
+    for(int i = 0; i < POPULATION_SIZE; i++)
     {
-        citizen = population[i];
+        citizen = &population[i];
         for(int j = 0; j < 9; j++)
         {
-            fitness += sqrt(pow(citizen.y - latitude->at(j),2) + pow(citizen.x - longitude->at(j),2));
+            fitness += sqrt(pow(citizen->y - latitude->at(j),2) + pow(citizen->x - longitude->at(j),2));
         }
-        citizen.fit = fitness;
+        (*citizen).fit = fitness;
     }
 }
 
@@ -89,6 +89,24 @@ void minDistance::Selection()
 
 void minDistance::CrossOver()
 {
+    chro *temp1;
+    chro *temp2;
+    chro *temp3 = new chro;
+    chro *temp4 = new chro;
+    for(int i = 0; i < POPULATION_SIZE; i+=2)
+    {
+        if(prandom.RandomDouble(0,1) <= CROSSOVER_RATE)
+        {
+            temp1 = &middle[i];
+            temp2 = &middle[i+1];
+            temp3->x = (temp1->x + temp2->x)/2;
+            temp3->y = (temp1->y + temp2->y)/2;
+            temp4->x = (temp1->x - temp2->x)/2;
+            temp4->y = (temp1->y - temp2->y)/2;
+            middle[i] = *temp3;
+            middle[i+1] = *temp4;
+        }
+    }
 
 }
 
@@ -100,4 +118,13 @@ void minDistance::Mutate()
 void minDistance::rePlace()
 {
 
+}
+
+void minDistance::Elitism()
+{
+    int eli = ELITISM_RATE * POPULATION_SIZE;
+    for(int i = 0; i < eli; i++)
+    {
+        middle[i] = population[i];
+    }
 }
