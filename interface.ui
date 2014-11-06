@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
+    <width>733</width>
     <height>330</height>
    </rect>
   </property>
@@ -232,6 +232,7 @@ background-color: rgb(137, 118, 118);</string>
   <tabstop>text_generation</tabstop>
   <tabstop>text_elitism</tabstop>
   <tabstop>text_mutation</tabstop>
+  <tabstop>text_crossRate</tabstop>
   <tabstop>button_start</tabstop>
   <tabstop>button_reset</tabstop>
   <tabstop>button_stop</tabstop>

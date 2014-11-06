@@ -26,14 +26,16 @@ public:
     void Selection();
     void CrossOver();
     void Mutate();
-    void rePlace();
+    void Swap();
     void Elitism();
+    void Best();
+    bool Fitness_Sort(chro x, chro y);
 
 private:
     Interface *ui;
     const int POPULATION_SIZE;
     const int GENERATION_NUMBER;
-    const float MUTAION_RATE;
+    const float MUTATION_RATE;
     const float ELITISM_RATE;
     const float CROSSOVER_RATE;
     QVector<double> *latitude = new QVector<double>();

@@ -4,9 +4,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <QDebug>
+#include <algorithm>
 
 using std::string;
+using std::stold;
+using std::fmod;
 
 //minDistance::minDistance(){}
 
@@ -18,7 +20,7 @@ minDistance::~minDistance()
 }
 
 minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit, float cross) :
-    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTAION_RATE(mut), ELITISM_RATE(elit), CROSSOVER_RATE(cross)
+    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), ELITISM_RATE(elit), CROSSOVER_RATE(cross)
 {
     std::ifstream file("../Genetic/position.txt");
     string temp="";
@@ -112,12 +114,24 @@ void minDistance::CrossOver()
 
 void minDistance::Mutate()
 {
-
+    chro *citizen;
+    for(int i = 0; i < POPULATION_SIZE; i++)
+    {
+        if(prandom.RandomDouble(0,1) < MUTATION_RATE)
+        {
+            citizen = &middle[i];
+            citizen->x = fmod((citizen->x + prandom.RandomDouble(0,4)), 59.0) + 55.0;
+            citizen->y = fmod((citizen->y + prandom.RandomDouble(0,3)), 31.0) + 28.0;
+        }
+    }
 }
 
-void minDistance::rePlace()
+void minDistance::Swap()
 {
-
+    for(int i = 0; i < POPULATION_SIZE; i++)
+    {
+        population[i] = middle[i];
+    }
 }
 
 void minDistance::Elitism()
@@ -127,4 +141,31 @@ void minDistance::Elitism()
     {
         middle[i] = population[i];
     }
+}
+
+void minDistance::Best()
+{
+    chro min;
+    chro temp;
+    min.fit = 1000;
+    for(int i = 0; i < POPULATION_SIZE; i++)
+    {
+        temp = population[i];
+        if(min.fit > temp.fit)
+        {
+            min.fit = temp.fit;
+            min.x = temp.x;
+            min.y = temp.y;
+        }
+    }
+    QVector<double> la;
+    QVector<double> lo;
+    la.push_back(min.y);
+    lo.push_back(min.x);
+    ui->ui->graphInterface->addGraph();
+    int num = ui->ui->graphInterface->graphCount();
+    ui->ui->graphInterface->graph(num-1)->setData(lo, la);
+    ui->ui->graphInterface->graph(num-1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssPlus, Qt::red, Qt::white,7));
+    ui->ui->graphInterface->graph(num-1)->setLineStyle(QCPGraph::lsNone);
+    ui->ui->graphInterface->replot();
 }

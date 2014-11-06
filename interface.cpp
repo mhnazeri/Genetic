@@ -28,8 +28,8 @@ Interface::Interface(QWidget *parent) :
 
 Interface::~Interface()
 {
-    delete ui;
 //    delete mind;
+    delete ui;
 }
 
 void Interface::on_button_start_clicked()
