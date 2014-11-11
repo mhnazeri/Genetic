@@ -66,6 +66,9 @@
       <property name="styleSheet">
        <string notr="true">border-color: rgb(35, 16, 223);</string>
       </property>
+      <property name="text">
+       <string>0.2</string>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -73,12 +76,18 @@
       <property name="styleSheet">
        <string notr="true">border-color: rgb(35, 16, 223);</string>
       </property>
+      <property name="text">
+       <string>1000</string>
+      </property>
      </widget>
     </item>
     <item row="1" column="5">
      <widget class="QLineEdit" name="text_elitism">
       <property name="styleSheet">
        <string notr="true">border-color: rgb(35, 16, 223);</string>
+      </property>
+      <property name="text">
+       <string>0.1</string>
       </property>
      </widget>
     </item>
@@ -107,10 +116,17 @@
       <property name="styleSheet">
        <string notr="true">border-color: rgb(35, 16, 223);</string>
       </property>
+      <property name="text">
+       <string>100</string>
+      </property>
      </widget>
     </item>
     <item row="1" column="9">
-     <widget class="QLineEdit" name="text_crossRate"/>
+     <widget class="QLineEdit" name="text_crossRate">
+      <property name="text">
+       <string>0.5</string>
+      </property>
+     </widget>
     </item>
     <item row="0" column="0" colspan="10">
      <spacer name="horizontalSpacer">

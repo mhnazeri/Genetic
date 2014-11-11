@@ -6,8 +6,8 @@ class Random_Generator
 public:
     Random_Generator();
     ~Random_Generator();
-    double RandomDouble(double Min, double Max);
-    int RandomInteger(int Min, int Max);
+    double Double(double Min, double Max);
+    int Integer(int Min, int Max);
 };
 
 #endif // RANDOM_GENERATOR_H

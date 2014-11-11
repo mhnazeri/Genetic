@@ -14,7 +14,6 @@ using std::fmod;
 
 minDistance::~minDistance()
 {
-    delete ui;
     delete latitude;
     delete longitude;
 }
@@ -22,33 +21,56 @@ minDistance::~minDistance()
 minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit, float cross) :
     ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), ELITISM_RATE(elit), CROSSOVER_RATE(cross)
 {
+    minimum->fit = 1000;
     std::ifstream file("../Genetic/position.txt");
+    std::ifstream myfile1("../Genetic/position.txt");
+    CITY_COUNT = 0;
+    string line;
+    if(myfile1.is_open())
+    {
+        while(getline(myfile1,line))
+        {
+            CITY_COUNT++;
+        }
+        myfile1.close();
+    }
     string temp="";
     if( file.is_open())
     {
-        for(int i = 0; i < 9; i++)
+        for(int i = 0; i < CITY_COUNT; i++)
         {
             file >> temp;
             latitude->push_back(std::stold(temp));
             file >> temp;
             longitude->push_back(std::stold(temp));
         }
+        file.close();
     }else{
         std::cout << "Can't Load The Postion File!" << std::endl;
     }
-    ui->ui->graphInterface->addGraph();
-    ui->ui->graphInterface->xAxis->setAutoTickStep(false);
-    ui->ui->graphInterface->yAxis->setAutoTickStep(false);
-    ui->ui->graphInterface->xAxis->setTickStep(0.5);
-    ui->ui->graphInterface->yAxis->setTickStep(0.5);
-    ui->ui->graphInterface->xAxis->setLabel("Longitude");
-    ui->ui->graphInterface->yAxis->setLabel("Latitude");
-    ui->ui->graphInterface->xAxis->setRange(55, 59);
-    ui->ui->graphInterface->yAxis->setRange(28, 31);
-    ui->ui->graphInterface->graph(0)->setData(*longitude, *latitude);
-    ui->ui->graphInterface->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, Qt::blue, Qt::white,10));
-    ui->ui->graphInterface->graph(0)->setLineStyle(QCPGraph::lsNone);
-    ui->ui->graphInterface->replot();
+    ui->Plot(*longitude, *latitude, Qt::blue, QCPScatterStyle::ssCross, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 28, 31);
+}
+
+void minDistance::Run()
+{
+    InitialPopulation();
+    for(int i = 0; i < GENERATION_NUMBER; i++)
+    {
+        Fitness();
+        Best();
+        Selection();
+        CrossOver();
+        Mutate();
+        Swap();
+    }
+    Fitness();
+    Best();
+    ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x));
+    std::vector<double> la;
+    std::vector<double> lo;
+    la.push_back(minimum->y);
+    lo.push_back(minimum->x);
+    ui->Plot(lo, la, Qt::green, QCPScatterStyle::ssPlus, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 28, 31);
 }
 
 void minDistance::InitialPopulation()
@@ -56,8 +78,8 @@ void minDistance::InitialPopulation()
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         chro citizen;
-        citizen.x = prandom.RandomDouble(55, 59);
-        citizen.y = prandom.RandomDouble(28, 31);
+        citizen.x = dice.Double(55, 59);
+        citizen.y = dice.Double(28, 31);
         citizen.fit = 1000.0;
         population.push_back(citizen);
     }
@@ -71,7 +93,7 @@ void minDistance::Fitness()
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         citizen = &population[i];
-        for(int j = 0; j < 9; j++)
+        for(int j = 0; j < CITY_COUNT; j++)
         {
             fitness += sqrt(pow(citizen->y - latitude->at(j),2) + pow(citizen->x - longitude->at(j),2));
         }
@@ -97,33 +119,60 @@ void minDistance::CrossOver()
     chro *temp4 = new chro;
     for(int i = 0; i < POPULATION_SIZE; i+=2)
     {
-        if(prandom.RandomDouble(0,1) <= CROSSOVER_RATE)
+        if(dice.Double(0,1) <= CROSSOVER_RATE)
         {
             temp1 = &middle[i];
             temp2 = &middle[i+1];
             temp3->x = (temp1->x + temp2->x)/2;
             temp3->y = (temp1->y + temp2->y)/2;
-            temp4->x = (temp1->x - temp2->x)/2;
-            temp4->y = (temp1->y - temp2->y)/2;
+//            if(std::abs(temp1->x - temp2->x) + 55 > 4.0)
+//            {
+                temp4->x = std::abs(temp1->x - temp2->x) + 55.0;
+//            }else{
+//                temp4->x = (temp1->x - temp2->x)/2, 59.0) + 55.0;
+//            }
+//            if(((temp1->y - temp2->y)/2) + 28.0 > 31.0)
+//            {
+                temp4->y = std::abs(temp1->y - temp2->y) + 28.0;
+//            }else{
+
+//            }
             middle[i] = *temp3;
             middle[i+1] = *temp4;
         }
     }
-
+    delete temp1;
+    delete temp2;
+    delete temp3;
+    delete temp4;
 }
 
 void minDistance::Mutate()
 {
     chro *citizen;
+    double random;
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
-        if(prandom.RandomDouble(0,1) < MUTATION_RATE)
+        if(dice.Double(0,1) < MUTATION_RATE)
         {
+            random = dice.Double(0, 4);
             citizen = &middle[i];
-            citizen->x = fmod((citizen->x + prandom.RandomDouble(0,4)), 59.0) + 55.0;
-            citizen->y = fmod((citizen->y + prandom.RandomDouble(0,3)), 31.0) + 28.0;
+            if((citizen->x + random > 59))
+            {
+                    citizen->x = fmod((citizen->x + random), 59.0) + 55.0;
+            }else{
+                citizen->x = citizen->x + random;
+            }
+            random = dice.Double(0, 3);
+            if((citizen->y + random > 31))
+            {
+                citizen->y = fmod((citizen->y + random), 31.0) + 28.0;
+            }else{
+                citizen->y = citizen->y + random;
+            }
         }
     }
+    delete citizen;
 }
 
 void minDistance::Swap()
@@ -145,27 +194,23 @@ void minDistance::Elitism()
 
 void minDistance::Best()
 {
-    chro min;
     chro temp;
-    min.fit = 1000;
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         temp = population[i];
-        if(min.fit > temp.fit)
-        {
-            min.fit = temp.fit;
-            min.x = temp.x;
-            min.y = temp.y;
-        }
+//        if(min.fit > temp.fit)
+//        {
+//            min.fit = temp.fit;
+//            min.x = temp.x;
+//            min.y = temp.y;
+//        }
+        minimum->fit = std::min(minimum->fit, temp.fit);
+        minimum->x = temp.x;
+        minimum->y = temp.y;
     }
-    QVector<double> la;
-    QVector<double> lo;
-    la.push_back(min.y);
-    lo.push_back(min.x);
-    ui->ui->graphInterface->addGraph();
-    int num = ui->ui->graphInterface->graphCount();
-    ui->ui->graphInterface->graph(num-1)->setData(lo, la);
-    ui->ui->graphInterface->graph(num-1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssPlus, Qt::red, Qt::white,7));
-    ui->ui->graphInterface->graph(num-1)->setLineStyle(QCPGraph::lsNone);
-    ui->ui->graphInterface->replot();
+    std::vector<double> la;
+    std::vector<double> lo;
+    la.push_back(minimum->y);
+    lo.push_back(minimum->x);
+    ui->Plot(lo, la, Qt::red, QCPScatterStyle::ssCircle, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 28, 31);
 }

@@ -6,7 +6,7 @@ Random_Generator::Random_Generator(){srand(time_t(NULL));}
 
 Random_Generator::~Random_Generator(){}
 
-double Random_Generator::RandomDouble(double Min, double Max)
+double Random_Generator::Double(double Min, double Max)
 {
     double lower_bound = Min;
     double upper_bound = Max;
@@ -16,7 +16,7 @@ double Random_Generator::RandomDouble(double Min, double Max)
     return random_double;
 }
 
-int Random_Generator::RandomInteger(int Min, int Max)
+int Random_Generator::Integer(int Min, int Max)
 {
     int lower_bound = Min;
     int upper_bound = Max;

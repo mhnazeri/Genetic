@@ -30,6 +30,7 @@ public:
     void Elitism();
     void Best();
     bool Fitness_Sort(chro x, chro y);
+    void Run();
 
 private:
     Interface *ui;
@@ -38,11 +39,13 @@ private:
     const float MUTATION_RATE;
     const float ELITISM_RATE;
     const float CROSSOVER_RATE;
-    QVector<double> *latitude = new QVector<double>();
-    QVector<double> *longitude = new QVector<double>();
-    Random_Generator prandom;
+    std::vector<double> *latitude = new std::vector<double>();
+    std::vector<double> *longitude = new std::vector<double>();
+    Random_Generator dice;
     std::vector<chro> population;
     std::vector<chro> middle;
+    int CITY_COUNT;
+    minDistance::chro *minimum = new minDistance::chro;
 };
 
 
