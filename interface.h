@@ -19,7 +19,7 @@ class Interface : public QMainWindow
 public:
     explicit Interface(QWidget *parent = 0);
     ~Interface();
-    void Plot(std::vector<double> &longi, std::vector<double> &lati, QColor color, QCPScatterStyle::ScatterShape shape, QCPGraph::LineStyle line, float xStep, float yStep, QString xLabel, QString ylabel, int xRange1, int xRange2, int yRange1, int yRange2);
+    void Plot(std::vector<double> &longi, std::vector<double> &lati, QColor color, QCPScatterStyle::ScatterShape shape, QCPGraph::LineStyle line, float xStep, float yStep, QString xLabel, QString ylabel, int xRange1, int xRange2, int yRange1, int yRange2, int size);
 
 private slots:
     void on_button_start_clicked();

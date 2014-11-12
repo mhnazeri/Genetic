@@ -25,11 +25,12 @@ void Interface::on_button_start_clicked()
                            std::stof(ui->text_mutation->text().toStdString()),
                            std::stof(ui->text_elitism->text().toStdString()),
                            std::stof(ui->text_crossRate->text().toStdString()));
+    mind->Run();
 }
 
 void Interface::Plot(std::vector<double> &longi, std::vector<double> &lati, QColor color, QCPScatterStyle::ScatterShape shape,
                      QCPGraph::LineStyle line, float xStep, float yStep, QString xLabel, QString ylabel, int xRange1,
-                     int xRange2, int yRange1, int yRange2)
+                     int xRange2, int yRange1, int yRange2, int size)
 {
     QVector<double> lat = QVector<double>::fromStdVector(lati);
     QVector<double> lon = QVector<double>::fromStdVector(longi);
@@ -45,7 +46,7 @@ void Interface::Plot(std::vector<double> &longi, std::vector<double> &lati, QCol
     int num_graph = ui->graphInterface->graphCount();
     const int graph_pos = num_graph - 1;
     ui->graphInterface->graph(graph_pos)->setData(lon, lat);
-    ui->graphInterface->graph(graph_pos)->setScatterStyle(QCPScatterStyle(shape, color, Qt::white, 10));
+    ui->graphInterface->graph(graph_pos)->setScatterStyle(QCPScatterStyle(shape, color, Qt::white, size));
     ui->graphInterface->graph(graph_pos)->setLineStyle(line);
     ui->graphInterface->replot();
 }
@@ -58,6 +59,8 @@ void Interface::on_button_reset_clicked()
     ui->text_generation->setText("");
     ui->text_mutation->setText("");
     ui->text_pop->setText("");
+    ui->graphInterface->clearGraphs();
+    ui->graphInterface->replot();
 }
 
 void Interface::on_button_stop_clicked()

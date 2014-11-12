@@ -1,27 +1,22 @@
 #include "random_generator.h"
 #include <random>
-#include <time.h>
 
-Random_Generator::Random_Generator(){srand(time_t(NULL));}
+Random_Generator::Random_Generator(){}
 
 Random_Generator::~Random_Generator(){}
 
 double Random_Generator::Double(double Min, double Max)
 {
-    double lower_bound = Min;
-    double upper_bound = Max;
-    std::uniform_real_distribution<double> unif(lower_bound,upper_bound);
-    std::default_random_engine re;
-    double random_double = unif(re);
-    return random_double;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(Min, Max);
+    return dis(gen);
 }
 
 int Random_Generator::Integer(int Min, int Max)
 {
-    int lower_bound = Min;
-    int upper_bound = Max;
-    std::uniform_int_distribution<int> unif(lower_bound,upper_bound);
-    std::default_random_engine re;
-    double random_int = unif(re);
-    return random_int;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(Min, Max);
+    return dis(gen);
 }
