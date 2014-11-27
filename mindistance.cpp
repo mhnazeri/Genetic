@@ -9,8 +9,10 @@
 using std::string;
 using std::stold;
 using std::fmod;
+using std::abs;
 
 //minDistance::minDistance(){}
+//using namespace std;
 
 minDistance::~minDistance()
 {
@@ -48,7 +50,7 @@ minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit, 
     }else{
         std::cout << "Can't Load The Postion File!" << std::endl;
     }
-    ui->Plot(*longitude, *latitude, Qt::blue, QCPScatterStyle::ssCross, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 10);
+    ui->Plot(*longitude, *latitude, Qt::black, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 10);
 }
 
 void minDistance::Run()
@@ -66,11 +68,12 @@ void minDistance::Run()
     Fitness();
     Best();
     ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x));
+    std::cout << "Latitude = " + QString::number(minimum->y).toStdString() + " , Longitude = " + QString::number(minimum->x).toStdString() << std::endl;
     std::vector<double> la;
     std::vector<double> lo;
     la.push_back(minimum->y);
     lo.push_back(minimum->x);
-    ui->Plot(lo, la, Qt::green, QCPScatterStyle::ssStar, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 20);
+    ui->Plot(lo, la, Qt::green, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 20);
 }
 
 void minDistance::InitialPopulation()
@@ -81,14 +84,14 @@ void minDistance::InitialPopulation()
     {
         chro citizen;
         citizen.x = dice.Double(55, 59);
-        citizen.y = dice.Double(28, 31);
+        citizen.y = dice.Double(27, 31);
         lo.push_back(citizen.x);
         la.push_back(citizen.y);
         citizen.fit = 1000.0;
         population.push_back(citizen);
     }
-//    ui->Plot(lo, la, Qt::black, QCPScatterStyle::ssCrossCircle, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 5);
-    middle.resize(POPULATION_SIZE);
+    ui->Plot(lo, la, Qt::black, QCPScatterStyle::ssCrossCircle, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 5);
+//    middle.resize(POPULATION_SIZE);
 }
 
 void minDistance::Fitness()
@@ -103,6 +106,7 @@ void minDistance::Fitness()
             fitness += sqrt(pow(citizen->y - latitude->at(j),2) + pow(citizen->x - longitude->at(j),2));
         }
         citizen->fit = fitness;
+        fitness = 0.0;
     }
     citizen = nullptr;
     delete citizen;
@@ -162,10 +166,14 @@ void minDistance::CrossOver()
         {
             temp1 = middle[i];
             temp2 = middle[i+1];
-            temp3.x = (temp1.x + temp2.x)/2;
-            temp4.y = (temp1.y + temp2.y)/2;
-            temp4.x = std::abs(temp1.x - temp2.x)/2 + 55.0;
-            temp4.y = std::abs(temp1.y - temp2.y)/2 + 28.0;
+//            temp3.x = (temp1.x + temp2.x)/2;
+//            temp3.y = (temp1.y + temp2.y)/2;
+//            temp4.x = std::abs(temp1.x - temp2.x)/2 + 55.0;
+//            temp4.y = std::abs(temp1.y - temp2.y)/2 + 28.0;
+            temp3.x = fmod(temp1.x + temp2.x, 2.0);
+            temp3.y = fmod(temp1.y + temp2.y, 2.0);
+            temp4.x = fmod(abs(temp1.x - temp2.x), 2.0) + 55.0;
+            temp4.y = fmod(abs(temp1.y - temp2.y), 2.0) + 28.0;
             middle[i] = temp3;
             middle[i+1] = temp4;
         }
@@ -185,6 +193,7 @@ void minDistance::Mutate()
             if((citizen->x + random > 59))
             {
                     citizen->x = fmod((citizen->x + random), 59.0) + 55.0;
+//                citizen->x = dice.Double(58, 59);
             }else{
                 citizen->x = citizen->x + random;
             }
@@ -192,6 +201,7 @@ void minDistance::Mutate()
             if((citizen->y + random > 31))
             {
                 citizen->y = fmod((citizen->y + random), 31.0) + 28.0;
+//                citizen->y = dice.Double(29, 31);
             }else{
                 citizen->y = citizen->y + random;
             }
@@ -203,10 +213,18 @@ void minDistance::Mutate()
 
 void minDistance::Swap()
 {
+    chro* temp;
+    chro mid;
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
-        population[i] = middle[i];
+        temp = &population[i];
+//        population[i] = middle[i];
+        mid = middle[i];
+        temp->x = mid.x;
+        temp->y = mid.y;
+        temp->fit = mid.fit;
     }
+    temp = nullptr;
 }
 
 void minDistance::Elitism()
@@ -243,4 +261,5 @@ void minDistance::Best()
     la.push_back(min.y);
     lo.push_back(min.x);
     ui->Plot(lo, la, Qt::red, QCPScatterStyle::ssCircle, QCPGraph::lsNone, 0.5, 0.5, "Longitude", "Latitude", 55, 59, 27, 31, 10);
+    std::cout << "Latitude = " + QString::number(min.y).toStdString() + " , Longitude = " + QString::number(min.x).toStdString() << std::endl;
 }

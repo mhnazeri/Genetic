@@ -66,4 +66,5 @@ void Interface::on_button_reset_clicked()
 void Interface::on_button_stop_clicked()
 {
     delete mind;
+    exit(0);
 }
