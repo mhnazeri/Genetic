@@ -17,12 +17,14 @@ SOURCES += main.cpp\
     mindistance.cpp \
     qcustomplot.cpp \
     random_generator.cpp \
-    sphere.cpp
+    sphere.cpp \
+    banchmark1.cpp
 
 HEADERS  += interface.h \
     mindistance.h \
     qcustomplot.h \
     random_generator.h \
-    sphere.h
+    sphere.h \
+    banchmark1.h
 
 FORMS    += interface.ui

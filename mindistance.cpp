@@ -180,6 +180,7 @@ void minDistance::CrossOver()
     }
 }
 
+
 void minDistance::Mutate()
 {
     chro *citizen;
