@@ -1,4 +1,3 @@
-
 #include "G2.h"
 #include "interface.h"
 #include <math.h>

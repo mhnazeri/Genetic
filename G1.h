@@ -28,7 +28,7 @@ public:
     void CrossOver();
     void Mutate();
     void replace();
-    void Elitism();
+    //void Elitism();
     void Best();
    // bool Fitness_Sort(chro x, chro y);
     void Run();
@@ -40,7 +40,7 @@ private:
     const float MUTATION_RATE;
     const int GENOME;
     const float CROSSOVER_RATE;
-    std::vector<double> *mehary = new std::vector<double>();
+    std::vector<double> *mehvary = new std::vector<double>();
     std::vector<double> *mehvarx = new std::vector<double>();
     Random_Generator dice;
     std::vector<chro> population;

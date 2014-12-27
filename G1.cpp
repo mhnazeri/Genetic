@@ -41,7 +41,7 @@ void G1::Run()
     std::cout << "mehvary = " + QString::number(minimum->y).toStdString() + " , mehvarx = " + QString::number(minimum->x).toStdString() << std::endl;
     std::vector<double> lx;
     std::vector<double> ly;
-    la.push_back(minimum->y);
+    lx.push_back(minimum->y);
     ly.push_back(minimum->x);
     ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", -30, 100, -30, 100, 20);
 }
@@ -151,27 +151,27 @@ void G1::CrossOver()
 
 void G1::Mutate()
 {
-    random6 = dice.Integer(0,POPULATION_SIZE);//MIDDLE_SIZE=POPULATION_SIZE
-     chro point1 = new chro;
-     chro point = new chro;
+    int random6 = dice.Integer(0,POPULATION_SIZE);//MIDDLE_SIZE=POPULATION_SIZE
+     //chro point1 = new chro;
+     chro *point = new chro;
 
 
-       for(i=0 ; i<=random ; i++)
+       for(int i=0 ; i<=random6 ; i++)
     {
          if(dice.Double(0,1) < MUTATION_RATE)
             {
-             random7 = dice.Integer(0,POPULATION_SIZE);
-             point = &middle[random1];
-             najmeh=0;
-        while (najmeh=0)
+             int random7 = dice.Integer(0,POPULATION_SIZE);
+             point = &middle[random7];
+             bool najmeh = 0;
+        while (najmeh = 0)
         {
 
-        random8 = dice.Double(-10,10);
+        int random8 = dice.Double(-10,10);
         if ((point->x + random8>=-30) && (point->x + random8<=100))
         {
-             point1->x = (point.x)+random8;
-             point->x = point1.x;
-             point->y = point.y;
+             point->x = (point->x)+random8;
+             //point->x = point1->x;
+             point->y = point->y;
              najmeh=1;
         }
 
@@ -192,7 +192,7 @@ void G1::replace()
         mid = middle[i];
         if(mid.fit<t6->fit)
         {
-        t6->x = mid->x;
+        t6->x = mid.x;
         t6->y = mid.y;
         t6->fit = mid.fit;
         }
