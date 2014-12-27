@@ -37,7 +37,7 @@ private:
     const int POPULATION_SIZE;
     const int GENERATION_NUMBER;
     const float MUTATION_RATE;
-    //const float ELITISM_RATE;
+    const float ELITISM_RATE;
     const float CROSSOVER_RATE;
     const int GENOME;
     std::vector<double> *latitude = new std::vector<double>();
