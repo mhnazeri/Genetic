@@ -18,15 +18,15 @@ SOURCES += main.cpp\
     qcustomplot.cpp \
     random_generator.cpp \
     sphere.cpp \
-    banchmark1.cpp \
-    kmeans.cpp
+    kmeans.cpp \
+    G1.cpp
 
 HEADERS  += interface.h \
     mindistance.h \
     qcustomplot.h \
     random_generator.h \
     sphere.h \
-    banchmark1.h \
-    kmeans.h
+    kmeans.h \
+    G1.h
 
 FORMS    += interface.ui
