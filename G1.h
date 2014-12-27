@@ -4,6 +4,8 @@
 #include "ui_interface.h"
 #include "random_generator.h"
 #include <vector>
+#include <chrono>
+
 
 class Interface;
 class Random_Generator;
@@ -15,8 +17,8 @@ public:
     G1(Interface *u, int pop, int gen, float mut, int geno, float cross);
     struct chro
     {
-        double x;
-        double y ;
+        double x=12;
+        double y=20 ;
         double fit = 1;
     };
     void InitialPopulation();
@@ -28,7 +30,7 @@ public:
     void replace();
     void Elitism();
     void Best();
-    bool Fitness_Sort(chro x, chro y);
+   // bool Fitness_Sort(chro x, chro y);
     void Run();
 
 private:
