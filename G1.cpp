@@ -13,8 +13,8 @@ using std::abs;
 
 G1::~G1()
 {
-    delete mehvarx;
     delete mehvary;
+    delete mehvarx;
 }
 
 G1::G1(Interface *u, int pop, int gen, float mut, int geno, float cross) :
@@ -41,8 +41,8 @@ void G1::Run()
     std::cout << "mehvary = " + QString::number(minimum->y).toStdString() + " , mehvarx = " + QString::number(minimum->x).toStdString() << std::endl;
     std::vector<double> lx;
     std::vector<double> ly;
-    lx.push_back(minimum->y);
-    ly.push_back(minimum->x);
+    ly.push_back(minimum->y);
+    lx.push_back(minimum->x);
     ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", -30, 100, -30, 100, 20);
 }
 
@@ -51,8 +51,8 @@ void G1::Run()
 
 void G1::InitialPopulation()
 {
-    std::vector<double> lx;
     std::vector<double> ly;
+    std::vector<double> lx;
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         chro point;
@@ -183,7 +183,7 @@ void G1::Mutate()
 
 void G1::replace()
 {
-    chro* t6;
+    chro *t6;
     chro mid;
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
