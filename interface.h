@@ -6,7 +6,9 @@
 #include "qcustomplot.h"
 #include "mindistance.h"
 #include "sphere.h"
-#include "banchmark1.h"
+#include "G1.h"
+#include "G2.h"
+#include "kmeans.h"
 
 namespace Ui {
 class Interface;
@@ -14,13 +16,17 @@ class Interface;
 
 class minDistance;
 class Sphere;
-class banchmark1;
+class G1;
+class G2;
+class KMeans;
 class Interface : public QMainWindow
 {
     Q_OBJECT
     friend class minDistance;
     friend class Sphere;
-    friend class banchmark1;
+    friend class G1;
+    friend class G2;
+    friend class KMeans;
 //    friend class nqueens;
 
 public:
@@ -40,9 +46,11 @@ private:
     Ui::Interface *ui;
     minDistance *mind;
     Sphere *sphere;
-    banchmark1 *g1;
+    G1 *g1;
+    G2 *g2;
+    KMeans *kmean;
     enum{
-        FIRE_STATION, SPHERE, NQUEENS, G1
+        FIRE_STATION, SPHERE, NQUEENS, G11, G22, KMEANS
     };
 };
 
