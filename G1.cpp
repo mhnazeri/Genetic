@@ -163,7 +163,7 @@ void G1::Mutate()
              int random7 = dice.Integer(0,POPULATION_SIZE);
              point = &middle[random7];
              bool najmeh = 0;
-        while (najmeh = 0)
+        while (najmeh == 0)
         {
 
         int random8 = dice.Double(-10,10);
