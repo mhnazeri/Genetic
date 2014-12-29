@@ -30,7 +30,7 @@ public:
     void replace();
     //void Elitism();
     void Best();
-   // bool Fitness_Sort(chro x, chro y);
+    bool Fitness_Sort(chro x, chro y);
     void Run();
 
 private:

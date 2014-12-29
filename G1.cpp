@@ -43,7 +43,7 @@ void G1::Run()
     std::vector<double> ly;
     ly.push_back(minimum->y);
     lx.push_back(minimum->x);
-    ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", -30, 100, -30, 100, 20);
+    ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 20);
 }
 
 
@@ -56,14 +56,14 @@ void G1::InitialPopulation()
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         chro point;
-        point.x = dice.Double(-30, 100);
-        point.y = dice.Double(-30, 100);
+        point.x = dice.Double(0, 100);
+        point.y = dice.Double(0, 100);
         lx.push_back(point.x);
         ly.push_back(point.y);
         point.fit = 1;
         population.push_back(point);
     }
-    ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssCrossSquare, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", -30, 100, -30, 100, 20);
+    ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssCrossSquare, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 20);
 //    middle.resize(POPULATION_SIZE);
 
 }
@@ -167,7 +167,7 @@ void G1::Mutate()
         {
 
         int random8 = dice.Double(-10,10);
-        if ((point->x + random8>=-30) && (point->x + random8<=100))
+        if ((point->x + random8>=0) && (point->x + random8<=100))
         {
              point->x = (point->x)+random8;
              //point->x = point1->x;
@@ -230,6 +230,6 @@ void G1::Best()
     std::vector<double> ly;
     lx.push_back(min.y);
     ly.push_back(min.x);
-    ui->Plot(lx, ly, Qt::red, QCPScatterStyle::ssStar, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", -30, 100, -30, 100, 20);
+    ui->Plot(lx, ly, Qt::red, QCPScatterStyle::ssStar, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 20);
     std::cout << "mehvary = " + QString::number(min.y).toStdString() + " , mehvarx = " + QString::number(min.x).toStdString() << std::endl;
 }
