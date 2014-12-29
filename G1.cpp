@@ -21,7 +21,7 @@ G1::G1(Interface *u, int pop, int gen, float mut, int geno, float cross) :
     ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), GENOME(geno), CROSSOVER_RATE(cross)
 {
     minimum->fit = 1;
-
+       int i;
     for(i=0;i< GENOME;i++)
     {
         mehvarx->push_back(dice.Double(0,100));
@@ -33,7 +33,7 @@ G1::G1(Interface *u, int pop, int gen, float mut, int geno, float cross) :
 
 void G1::Run()
 {
-    high_resolution_clock::time_point t1 = high_resolution_clock::now();
+   // high_resolution_clock::time_point t1 = high_resolution_clock::now();
     InitialPopulation();
     for(int i = 0; i < GENERATION_NUMBER; i++)
     {
@@ -46,9 +46,9 @@ void G1::Run()
     }
     Fitness();
     Best();
-    high_resolution_clock::time_point t2 = high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
-    ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x) + " \t Time = " + QString::number(duration) + " Seconds");
+   // high_resolution_clock::time_point t2 = high_resolution_clock::now();
+   // auto duration = std::chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
+    ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x)) ;
     std::cout << "mehvary = " + QString::number(minimum->y).toStdString() + " , mehvarx = " + QString::number(minimum->x).toStdString() << std::endl;
     std::vector<double> lx;
     std::vector<double> ly;
