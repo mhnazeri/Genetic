@@ -21,10 +21,19 @@ G1::G1(Interface *u, int pop, int gen, float mut, int geno, float cross) :
     ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), GENOME(geno), CROSSOVER_RATE(cross)
 {
     minimum->fit = 1;
+
+    for(i=0;i< GENOME;i++)
+    {
+        mehvarx->push_back(dice.Double(0,100));
+        mehvary->push_back(dice.Double(0,100));
+     }
+    ui->Plot(*mehvarx, *mehvary, Qt::green, QCPScatterStyle::ssCrossCircle, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 10);
 }
+
 
 void G1::Run()
 {
+    high_resolution_clock::time_point t1 = high_resolution_clock::now();
     InitialPopulation();
     for(int i = 0; i < GENERATION_NUMBER; i++)
     {
@@ -37,13 +46,15 @@ void G1::Run()
     }
     Fitness();
     Best();
-    ui->ui->text_answer->setText("mehvary = " + QString::number(minimum->y) + " , mehvarx = " + QString::number(minimum->x));
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
+    ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x) + " \t Time = " + QString::number(duration) + " Seconds");
     std::cout << "mehvary = " + QString::number(minimum->y).toStdString() + " , mehvarx = " + QString::number(minimum->x).toStdString() << std::endl;
     std::vector<double> lx;
     std::vector<double> ly;
     ly.push_back(minimum->y);
     lx.push_back(minimum->x);
-    ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 20);
+    ui->Plot(lx, ly, Qt::blue, QCPScatterStyle::ssDisc, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 10);
 }
 
 
@@ -63,7 +74,7 @@ void G1::InitialPopulation()
         point.fit = 1;
         population.push_back(point);
     }
-    ui->Plot(lx, ly, Qt::yellow, QCPScatterStyle::ssCrossSquare, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 20);
+    ui->Plot(lx, ly, Qt::blue, QCPScatterStyle::ssCrossSquare, QCPGraph::lsNone, 10, 10, "mehvarx", "mehvary", 0, 100, 0, 100, 10);
 //    middle.resize(POPULATION_SIZE);
 
 }
@@ -129,20 +140,20 @@ void G1::Selection()
 
 void G1::CrossOver()
 {
-    chro t1;
-    chro t2;
+    chro te1;
+    chro te2;
     chro t3;
     chro t4;
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         if(dice.Double(0,1) <= CROSSOVER_RATE)
         {
-            t1 = middle[i];
-            t2 = middle[i+1];
-            t3.x = (t1.x + t2.x);
-            t3.y = (t1.y + t2.y);
-            t4.x = (t1.x - t2.x);
-            t4.y = (t1.y - t2.y);
+            te1 = middle[i];
+            te2 = middle[i+1];
+            t3.x = (te1.x + te2.x);
+            t3.y = (te1.y + te2.y);
+            t4.x = (te1.x - te2.x);
+            t4.y = (te1.y - te2.y);
             middle[i] = t3;
             middle[i+1] = t4;
         }
@@ -153,7 +164,7 @@ void G1::Mutate()
 {
     int random6 = dice.Integer(0,POPULATION_SIZE);//MIDDLE_SIZE=POPULATION_SIZE
      //chro point1 = new chro;
-     chro *point = new chro;
+    chro *point = new chro;
 
 
        for(int i=0 ; i<=random6 ; i++)
