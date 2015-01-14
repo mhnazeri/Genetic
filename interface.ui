@@ -154,7 +154,23 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="box_algorithm"/>
+       <widget class="QComboBox" name="box_algorithm">
+        <item>
+         <property name="text">
+          <string>Fire Station</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sphere</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>NQueens</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_3">

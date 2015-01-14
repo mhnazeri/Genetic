@@ -20,20 +20,38 @@ Interface::~Interface()
 
 void Interface::on_button_start_clicked()
 {
-    mind = new minDistance(this,std::stoi(ui->text_pop->text().toStdString()),
-                           std::stoi(ui->text_generation->text().toStdString()),
-                           std::stof(ui->text_mutation->text().toStdString()),
-                           std::stof(ui->text_elitism->text().toStdString()),
-                           std::stof(ui->text_crossRate->text().toStdString()));
-    mind->Run();
+    QString algo = "";
+    algo = ui->box_algorithm->currentText();
+    switch(algo)
+    {
+    case "Fire Staion":
+        mind = new minDistance(this,std::stoi(ui->text_pop->text().toStdString()),
+                               std::stoi(ui->text_generation->text().toStdString()),
+                               std::stof(ui->text_mutation->text().toStdString()),
+                               std::stof(ui->text_elitism->text().toStdString()),
+                               std::stof(ui->text_crossRate->text().toStdString()));
+        mind->Run();
+        break;
+    case "Sphere":
+        sphere = new Sphere(this,std::stoi(ui->text_pop->text().toStdString()),
+                               std::stoi(ui->text_generation->text().toStdString()),
+                               std::stof(ui->text_mutation->text().toStdString()),
+                               std::stof(ui->text_elitism->text().toStdString()),
+                               std::stof(ui->text_crossRate->text().toStdString()));
+        break;
+    case "NQueens":
+        break;
+    }
+
+
 }
 
-void Interface::Plot(std::vector<double> &longi, std::vector<double> &lati, QColor color, QCPScatterStyle::ScatterShape shape,
+void Interface::Plot(std::vector<double> &x, std::vector<double> &y, QColor color, QCPScatterStyle::ScatterShape shape,
                      QCPGraph::LineStyle line, float xStep, float yStep, QString xLabel, QString ylabel, int xRange1,
                      int xRange2, int yRange1, int yRange2, int size)
 {
-    QVector<double> lat = QVector<double>::fromStdVector(lati);
-    QVector<double> lon = QVector<double>::fromStdVector(longi);
+    QVector<double> lat = QVector<double>::fromStdVector(y);
+    QVector<double> lon = QVector<double>::fromStdVector(x);
     ui->graphInterface->addGraph();
     ui->graphInterface->xAxis->setAutoTickStep(false);
     ui->graphInterface->yAxis->setAutoTickStep(false);
@@ -61,6 +79,11 @@ void Interface::on_button_reset_clicked()
     ui->text_pop->setText("");
     ui->graphInterface->clearGraphs();
     ui->graphInterface->replot();
+}
+
+void Interface::ClearGraph()
+{
+    ui->graphInterface->clearGraphs();
 }
 
 void Interface::on_button_stop_clicked()
