@@ -20,26 +20,34 @@ Interface::~Interface()
 
 void Interface::on_button_start_clicked()
 {
-    QString algo = "";
-    algo = ui->box_algorithm->currentText();
+    int algo = 0;
+    algo = ui->box_algorithm->currentIndex();
+    std::cout << "index:" << algo << std::endl;
     switch(algo)
     {
-    case "Fire Staion":
+    case FIRE_STATION:
         mind = new minDistance(this,std::stoi(ui->text_pop->text().toStdString()),
                                std::stoi(ui->text_generation->text().toStdString()),
                                std::stof(ui->text_mutation->text().toStdString()),
-                               std::stof(ui->text_elitism->text().toStdString()),
+                               std::stoi(ui->text_elitism->text().toStdString()),
                                std::stof(ui->text_crossRate->text().toStdString()));
         mind->Run();
         break;
-    case "Sphere":
+    case SPHERE:
         sphere = new Sphere(this,std::stoi(ui->text_pop->text().toStdString()),
                                std::stoi(ui->text_generation->text().toStdString()),
                                std::stof(ui->text_mutation->text().toStdString()),
-                               std::stof(ui->text_elitism->text().toStdString()),
+                               std::stoi(ui->text_elitism->text().toStdString()),
                                std::stof(ui->text_crossRate->text().toStdString()));
         break;
-    case "NQueens":
+    case NQUEENS:
+        break;
+    case G1:
+        g1 = new banchmark1(this,std::stoi(ui->text_pop->text().toStdString()),
+                               std::stoi(ui->text_generation->text().toStdString()),
+                               std::stof(ui->text_mutation->text().toStdString()),
+                               std::stoi(ui->text_elitism->text().toStdString()),
+                               std::stof(ui->text_crossRate->text().toStdString()));
         break;
     }
 

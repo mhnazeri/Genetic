@@ -10,7 +10,7 @@ using std::string;
 using std::stold;
 using std::fmod;
 using std::abs;
-
+using namespace std::chrono;
 //minDistance::minDistance(){}
 //using namespace std;
 
@@ -20,8 +20,8 @@ minDistance::~minDistance()
     delete longitude;
 }
 
-minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit, float cross) :
-    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), ELITISM_RATE(elit), CROSSOVER_RATE(cross)
+minDistance::minDistance(Interface *u, int pop, int gen, float mut, int geno, float cross) :
+    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), GENOME(geno), CROSSOVER_RATE(cross)
 {
     minimum->fit = 1000;
     std::ifstream file("../Genetic/position.txt");
@@ -55,6 +55,7 @@ minDistance::minDistance(Interface *u, int pop, int gen, float mut, float elit, 
 
 void minDistance::Run()
 {
+    high_resolution_clock::time_point t1 = high_resolution_clock::now();
     InitialPopulation();
     for(int i = 0; i < GENERATION_NUMBER; i++)
     {
@@ -67,7 +68,9 @@ void minDistance::Run()
     }
     Fitness();
     Best();
-    ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x));
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
+    ui->ui->text_answer->setText("Latitude = " + QString::number(minimum->y) + " , Longitude = " + QString::number(minimum->x) + " \t Time = " + QString::number(duration) + " Seconds");
     std::cout << "Latitude = " + QString::number(minimum->y).toStdString() + " , Longitude = " + QString::number(minimum->x).toStdString() << std::endl;
     std::vector<double> la;
     std::vector<double> lo;
@@ -230,17 +233,13 @@ void minDistance::Swap()
 
 void minDistance::Elitism()
 {
-    int eli = ELITISM_RATE * POPULATION_SIZE;
-    for(int i = 0; i < eli; i++)
-    {
-        middle[i] = population[i];
-    }
 }
 
 void minDistance::Best()
 {
     chro temp;
     chro min;
+    min = population[0];
     for(int i = 0; i < POPULATION_SIZE; i++)
     {
         temp = population[i];

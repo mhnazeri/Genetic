@@ -10,10 +10,9 @@ class Random_Generator;
 class banchmark1
 {
 public:
-    banchmark1();
-
+//    banchmark1();
     ~banchmark1();
-    banchmark1(Interface *u, int pop, int gen, float mut, float elit, float cross);
+    banchmark1(Interface *u, int pop, int gen, float mut, int geno, float cross);
     struct chro
     {
         double x = 58.0;
@@ -37,7 +36,7 @@ private:
     const int POPULATION_SIZE;
     const int GENERATION_NUMBER;
     const float MUTATION_RATE;
-    const float ELITISM_RATE;
+    const int GENOME;
     const float CROSSOVER_RATE;
     std::vector<double> *latitude = new std::vector<double>();
     std::vector<double> *longitude = new std::vector<double>();

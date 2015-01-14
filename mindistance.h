@@ -5,15 +5,16 @@
 #include "ui_interface.h"
 #include "random_generator.h"
 #include <vector>
+#include <chrono>
 
 class Interface;
 class Random_Generator;
 class minDistance
 {
 public:
-    minDistance();
+//    minDistance();
     ~minDistance();
-    minDistance(Interface *u, int pop, int gen, float mut, float elit, float cross);
+    minDistance(Interface *u, int pop, int gen, float mut, int geno, float cross);
     struct chro
     {
         double x = 58.0;
@@ -37,7 +38,7 @@ private:
     const int POPULATION_SIZE;
     const int GENERATION_NUMBER;
     const float MUTATION_RATE;
-    const float ELITISM_RATE;
+    const int GENOME;
     const float CROSSOVER_RATE;
     std::vector<double> *latitude = new std::vector<double>();
     std::vector<double> *longitude = new std::vector<double>();

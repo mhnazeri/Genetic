@@ -15,8 +15,8 @@ using std::abs;
 //{
 //}
 
-banchmark1::banchmark1(Interface *u, int pop, int gen, float mut, float elit, float cross) :
-    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), ELITISM_RATE(elit), CROSSOVER_RATE(cross)
+banchmark1::banchmark1(Interface *u, int pop, int gen, float mut, int geno, float cross) :
+    ui(u), POPULATION_SIZE(pop), GENERATION_NUMBER(gen), MUTATION_RATE(mut), GENOME(geno), CROSSOVER_RATE(cross)
 {
 }
 

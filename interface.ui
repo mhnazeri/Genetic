@@ -57,7 +57,7 @@
        <string notr="true">font: italic 12pt &quot;Century Schoolbook L&quot;;</string>
       </property>
       <property name="text">
-       <string>Elitism Rate:</string>
+       <string>Genome:</string>
       </property>
      </widget>
     </item>
@@ -87,7 +87,7 @@
        <string notr="true">border-color: rgb(35, 16, 223);</string>
       </property>
       <property name="text">
-       <string>0.1</string>
+       <string>6</string>
       </property>
      </widget>
     </item>
@@ -168,6 +168,11 @@
         <item>
          <property name="text">
           <string>NQueens</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>G1</string>
          </property>
         </item>
        </widget>
