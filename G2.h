@@ -6,12 +6,18 @@
 #include "random_generator.h"
 #include <vector>
 
+#include "interface.h"
+#include "ui_interface.h"
+#include "random_generator.h"
+#include <vector>
+#include <chrono>
+
 class Interface;
 class Random_Generator;
 class G2
 {
 public:
-    G2();
+
     ~G2();
     G2(Interface *u, int pop, int gen, float mut, float elit, float cross);
     struct chro
@@ -27,9 +33,9 @@ public:
     void CrossOver();
     void Mutate();
     void Swap();
-    //void Elitism();
+
     void Best();
-    bool Fitness_Sort(chro x, chro y);
+
     void Run();
 
 private:
@@ -44,7 +50,7 @@ private:
     Random_Generator dice;
     std::vector<chro> population;
     std::vector<chro> middle;
-    int CITY_COUNT;
+
     G2::chro *minimum = new G2::chro;
 };
 
