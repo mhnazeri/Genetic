@@ -42,12 +42,26 @@ void Interface::on_button_start_clicked()
         break;
     case NQUEENS:
         break;
-    case G1:
-        g1 = new banchmark1(this,std::stoi(ui->text_pop->text().toStdString()),
+    case G11:
+        g1 = new G1(this,std::stoi(ui->text_pop->text().toStdString()),
                                std::stoi(ui->text_generation->text().toStdString()),
                                std::stof(ui->text_mutation->text().toStdString()),
                                std::stoi(ui->text_elitism->text().toStdString()),
                                std::stof(ui->text_crossRate->text().toStdString()));
+        break;
+    case G22:
+        g2 = new G2(this,std::stoi(ui->text_pop->text().toStdString()),
+                               std::stoi(ui->text_generation->text().toStdString()),
+                               std::stof(ui->text_mutation->text().toStdString()),
+                               std::stoi(ui->text_elitism->text().toStdString()),
+                               std::stof(ui->text_crossRate->text().toStdString()));
+        break;
+    case KMEANS:
+//        kmean = new KMeans(this,std::stoi(ui->text_pop->text().toStdString()),
+//                               std::stoi(ui->text_generation->text().toStdString()),
+//                               std::stof(ui->text_mutation->text().toStdString()),
+//                               std::stoi(ui->text_elitism->text().toStdString()),
+//                               std::stof(ui->text_crossRate->text().toStdString()));
         break;
     }
 

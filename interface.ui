@@ -155,6 +155,9 @@
       </item>
       <item>
        <widget class="QComboBox" name="box_algorithm">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(118, 92, 92);</string>
+        </property>
         <item>
          <property name="text">
           <string>Fire Station</string>
@@ -173,6 +176,16 @@
         <item>
          <property name="text">
           <string>G1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>G2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>K-Means</string>
          </property>
         </item>
        </widget>
