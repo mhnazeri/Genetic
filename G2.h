@@ -1,11 +1,5 @@
 #ifndef G2_H
 #define G2_H
-
-#include "interface.h"
-#include "ui_interface.h"
-#include "random_generator.h"
-#include <vector>
-
 #include "interface.h"
 #include "ui_interface.h"
 #include "random_generator.h"
