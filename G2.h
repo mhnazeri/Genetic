@@ -13,7 +13,7 @@ class G2
 public:
 
     ~G2();
-    G2(Interface *u, int pop, int gen, float mut, float elit, float cross);
+    G2(Interface *u, int pop, int gen, float mut, int geno, float cross);
     struct chro
     {
         double x=23;
@@ -39,6 +39,7 @@ private:
     const float MUTATION_RATE;
     const float ELITISM_RATE;
     const float CROSSOVER_RATE;
+    const int GENOME;
     std::vector<double> *latitude = new std::vector<double>();
     std::vector<double> *longitude = new std::vector<double>();
     Random_Generator dice;
