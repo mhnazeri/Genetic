@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     random_generator.cpp \
     sphere.cpp \
     banchmark1.cpp \
-    kmeans.cpp
+    kmeans.cpp \
+    G2.cpp
 
 HEADERS  += interface.h \
     mindistance.h \
@@ -27,6 +28,7 @@ HEADERS  += interface.h \
     random_generator.h \
     sphere.h \
     banchmark1.h \
-    kmeans.h
+    kmeans.h \
+    G2.h
 
 FORMS    += interface.ui
