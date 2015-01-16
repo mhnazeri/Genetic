@@ -20,7 +20,6 @@ SOURCES += main.cpp\
     sphere.cpp \
     kmeans.cpp \
     G1.cpp \
-    kmeans.cpp \
     G2.cpp
 
 HEADERS  += interface.h \
@@ -30,7 +29,6 @@ HEADERS  += interface.h \
     sphere.h \
     kmeans.h \
     G1.h \
-    kmeans.h \
     G2.h
 
 FORMS    += interface.ui
