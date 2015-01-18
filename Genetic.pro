@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     sphere.cpp \
     kmeans.cpp \
     G1.cpp \
-    G2.cpp
+    G2.cpp \
+    rosenbrock.cpp
 
 HEADERS  += interface.h \
     mindistance.h \
@@ -29,6 +30,7 @@ HEADERS  += interface.h \
     sphere.h \
     kmeans.h \
     G1.h \
-    G2.h
+    G2.h \
+    rosenbrock.h
 
 FORMS    += interface.ui
