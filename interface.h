@@ -5,29 +5,16 @@
 #include <vector>
 #include "qcustomplot.h"
 #include "mindistance.h"
-#include "sphere.h"
-#include "G1.h"
-#include "G2.h"
-#include "kmeans.h"
 
 namespace Ui {
 class Interface;
 }
 
 class minDistance;
-class Sphere;
-class G1;
-class G2;
-class KMeans;
 class Interface : public QMainWindow
 {
     Q_OBJECT
     friend class minDistance;
-    friend class Sphere;
-    friend class G1;
-    friend class G2;
-    friend class KMeans;
-//    friend class nqueens;
 
 public:
     explicit Interface(QWidget *parent = 0);
@@ -45,12 +32,8 @@ private slots:
 private:
     Ui::Interface *ui;
     minDistance *mind;
-    Sphere *sphere;
-    G1 *g1;
-    G2 *g2;
-    KMeans *kmean;
     enum{
-        FIRE_STATION, SPHERE, NQUEENS, G11, G22, KMEANS
+        FIRE_STATION
     };
 };
 

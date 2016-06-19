@@ -231,6 +231,9 @@ background-color: rgb(137, 118, 118);</string>
         <property name="text">
          <string>Stop</string>
         </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -241,6 +244,9 @@ background-color: rgb(137, 118, 118);</string>
         </property>
         <property name="text">
          <string>Reset</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
